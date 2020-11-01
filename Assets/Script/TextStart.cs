@@ -39,6 +39,8 @@ public class TalkStaitas
     public Text GetText { get; set; }
 
     public GameObject GetPanel { get; set; }
+
+    public int PanelOpenNum { get; set; }
 }
 
 class TextStart:MonoBehaviour
@@ -51,6 +53,9 @@ class TextStart:MonoBehaviour
 
     [Header("はい、いいえ")]
     [SerializeField] GameObject SelectPanel;
+    [SerializeField] int[] PanelNum;
+    static int[] private_num;
+    static int panel_index;
 
     private void Awake()
     {
@@ -62,7 +67,12 @@ class TextStart:MonoBehaviour
         talk.TextLength = Talk.Length;
         privete_Talk = Talk;
 
+        private_num = PanelNum;
+
         talk.GetPanel = SelectPanel;
+        talk.PanelOpenNum = private_num[panel_index];
+
+
     }
 
     static public void GetNextText(int use_talk_index)
@@ -71,6 +81,16 @@ class TextStart:MonoBehaviour
         if (use_talk_index < privete_Talk.Length)
         {
             talk.Text = privete_Talk[use_talk_index];
+        }
+    }
+
+    static public void NextPanelOpenNum()
+    {
+        panel_index++;
+        var talk = TalkStaitas.Ins();
+        if (panel_index < private_num.Length)
+        {
+            talk.PanelOpenNum = private_num[panel_index];
         }
     }
 }

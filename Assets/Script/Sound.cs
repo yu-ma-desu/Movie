@@ -23,7 +23,8 @@ public class Sound : MonoBehaviour
 
     private void Start()
     {
-        Novel = Resources.Load<AudioClip>("button37");
+        Novel = Resources.Load<AudioClip>("button40");
+        Comand = Resources.Load<AudioClip>("button37");
         Audio = GetComponent<AudioSource>();
     }
 

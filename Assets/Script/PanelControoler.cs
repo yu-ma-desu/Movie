@@ -7,12 +7,11 @@ public class PanelControoler : MonoBehaviour
     [SerializeField] GameObject[] SelectText;
     [Multiline][SerializeField] string[] text_array;
     int ArrayIndex;
+    int text_array_index;
     bool isEnter;
 
-
-
-    string s;
     MessageController message;
+    Sound sound = new Sound();
 
 
     private void Start()
@@ -42,7 +41,6 @@ public class PanelControoler : MonoBehaviour
 
     void PanelArrayIndex()
     {
-        Debug.Log(ArrayIndex);
         if (ArrayIndex > SelectText.Length - 1)
         {
             ArrayIndex = 0;
@@ -63,22 +61,25 @@ public class PanelControoler : MonoBehaviour
                 SelectText[i].SetActive(false);
             }
         }
+        sound.SoundEffect(Sound.Sounds.comand);
     }
 
     void SelectEnter()
     {
         isEnter = true;
+        sound.SoundEffect(Sound.Sounds.comand);
         //はい
         if (ArrayIndex == 0)
         {
-            s = text_array[0];
+            text_array_index++;
+            message.ChoicePanelClose();
         }
         //いいえ
         else if (ArrayIndex == 1)
         {
-            s = text_array[1];
             isEnter = false;
+            StartCoroutine(message.TalkMode(text_array[text_array_index], false));
         }
-        StartCoroutine(message.TalkMode( s,  false));
+        isEnter = false;
     }
 }

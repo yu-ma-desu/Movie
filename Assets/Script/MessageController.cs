@@ -7,28 +7,29 @@ public class MessageController : MonoBehaviour
 {
     Text text;                //テキストボックス
     int text_array_index;     //配列の要素数
+    bool isClose;
 
     TalkStaitas talk = TalkStaitas.Ins();
     Sound sound = new Sound();
 
 
     public void MassageStart()
-    {
+     {
         text_array_index = talk.GetMessageIndex();
-
-        if (text_array_index == 2)
+        if (text_array_index == talk.PanelOpenNum)
         {
             ChoicePanelOpen();
         }
-
-        if (text_array_index < talk.TextLength)
+        else if (text_array_index < talk.TextLength &&  !isClose)
         {
-            StartCoroutine(TalkMode(talk.Text,true));
+            StartCoroutine(TalkMode(talk.Text, true));
         }
+
     }
 
-    public IEnumerator TalkMode(string _text , bool isStory)
+    public IEnumerator TalkMode(string _text, bool isStory)
     {
+        isClose = true;
         text = talk.GetText;
         int talkCount = 0;
         text.text = "";
@@ -45,12 +46,17 @@ public class MessageController : MonoBehaviour
         }
 
         if (isStory) talk.GetNextMessageIndex();
-        
+        isClose = false;
     }
 
     /// <summary>2択パネルを表示</summary>
     public void ChoicePanelOpen() => talk.GetPanel.SetActive(true);
 
     /// <summary>2択パネルを非表示</summary>
-    public void ChoicePanelClose() => talk.GetPanel.SetActive(false);
+    public void ChoicePanelClose()
+    {
+        TextStart.NextPanelOpenNum();
+        talk.GetPanel.SetActive(false);
+        StartCoroutine(TalkMode(talk.Text, true));
+    }
 }
