@@ -7,7 +7,7 @@ public class MessageController : MonoBehaviour
 {
     Text text;                //テキストボックス
     int text_array_index;     //配列の要素数
-    bool isClose;
+    static public bool isClose;
 
     TalkStaitas talk = TalkStaitas.Ins();
     Sound sound = new Sound();

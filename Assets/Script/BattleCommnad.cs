@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CommandController : MonoBehaviour
+public class BattleCommnad : MonoBehaviour
 {
-
     void Start()
     {
-
+        
     }
-    public void CommandStart()
-    {
 
+    void Update()
+    {
+        
     }
 }

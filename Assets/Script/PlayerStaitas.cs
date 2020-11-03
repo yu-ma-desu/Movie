@@ -5,22 +5,14 @@ using System.Dynamic;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
 
+/// <summary>キャラクター継承元</summary>
 class Charactor
 {
-    private int hp = 0;
-    private int mp = 0;
-
     public string Name { get; set; }
-    public int HP
-    {
-        get { return hp; }
-        set { hp += value; }
-    }
-    public int MP
-    {
-        get { return mp; }
-        set { mp += value; }
-    }
+    public int HP { get; set; }
+    public int MP { get; set; }
+    public int LV { get; set; }
+    public string[] Skill { get; set; }
 }
 
 /// <summary>エイトステータス</summary>
@@ -60,11 +52,15 @@ public class PlayerStaitas : MonoBehaviour
     [SerializeField] string NameEight = "";
     [SerializeField] int HpEight = 0;
     [SerializeField] int MpEight = 0;
+    [SerializeField] int LvEight = 0;
+    [SerializeField] string[] SkillEight = null;
 
     [Header("ヤンガスステータス")]
     [SerializeField] string NameYanges = "";
     [SerializeField] int HpYangas = 0;
     [SerializeField] int MpYangas = 0;
+    [SerializeField] int LvYangas = 0;
+    [SerializeField] string[] SkillYangas = null;
 
     //ステータスを代入する
     private void Awake()
@@ -75,9 +71,13 @@ public class PlayerStaitas : MonoBehaviour
         eight.Name = NameEight;
         eight.HP = HpEight;
         eight.MP = MpEight;
+        eight.Skill = SkillEight;
+        eight.LV = LvEight;
 
         yangas.Name = NameYanges;
         yangas.HP = HpYangas;
         yangas.MP = MpYangas;
+        yangas.LV = LvYangas;
+        yangas.Skill = SkillYangas;
     }
 }
