@@ -9,38 +9,62 @@ abstract public class Cursor_Inherit : MonoBehaviour
     [Header("選択カーソル関係")]
     /// <summary>テキスト横のアイコン</summary>
     [SerializeField] GameObject[] SelectIcon;
+
     //表記するSelectIconの配列の要素数
     protected int ArrayIndex;
-    [Header("二次元配列にするか確認")]
+
+    [Header("二行以上あるか確認")]
     [SerializeField] bool isTwoArray;
 
-    protected Sound sound = new Sound();
+    protected Sound sound = Sound.Ins();
 
     void Update()
     {
         if (!MessageController.isClose)
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (!isTwoArray)
             {
-                ArrayIndex++;
-                CommandArrayIndex();
+                if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    ArrayIndex--;
+                    CommandArrayIndex();
+                }
+                else if (Input.GetKeyDown(KeyCode.DownArrow))
+                {
+                    ArrayIndex++;
+                    CommandArrayIndex();
+                }
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    SelectEnter();
+                }
             }
-            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            else
             {
-                ArrayIndex--;
-                CommandArrayIndex();
-            }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-
-            }
-            else if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-
-            }
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                SelectEnter();
+                if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    ArrayIndex -= 2;
+                    CommandArrayIndex();
+                }
+                else if (Input.GetKeyDown(KeyCode.DownArrow))
+                {
+                    ArrayIndex += 2;
+                    CommandArrayIndex();
+                }
+                else if (Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    ArrayIndex--;
+                    CommandArrayIndex();
+                }
+                else if (Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                    ArrayIndex++;
+                    CommandArrayIndex();
+                }
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    SelectEnter();
+                }
             }
         }
     }
@@ -49,15 +73,38 @@ abstract public class Cursor_Inherit : MonoBehaviour
     {
         if (!isTwoArray)
         {
+
             if (ArrayIndex > SelectIcon.Length - 1)
             {
                 ArrayIndex = 0;
             }
             else if (ArrayIndex < 0)
             {
-                ArrayIndex = 1;
+                ArrayIndex = SelectIcon.Length - 1;
             }
 
+            for (int i = 0; i < SelectIcon.Length; i++)
+            {
+                if (i == ArrayIndex)
+                {
+                    SelectIcon[i].SetActive(true);
+                }
+                else
+                {
+                    SelectIcon[i].SetActive(false);
+                }
+            }
+        }
+        else
+        {
+            if (ArrayIndex > SelectIcon.Length - 1)
+            {
+                ArrayIndex -= SelectIcon.Length;
+            }
+            else if (ArrayIndex < 0)
+            {
+                ArrayIndex += SelectIcon.Length;
+            }
             for (int i = 0; i < SelectIcon.Length; i++)
             {
                 if (i == ArrayIndex)

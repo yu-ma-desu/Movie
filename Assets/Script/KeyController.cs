@@ -4,35 +4,30 @@ using UnityEngine;
 
 public class KeyController : MonoBehaviour
 {
+    [SerializeField] int EventChange;
     TalkStaitas talk = TalkStaitas.Ins();
-
     int num;
 
-    private void Awake()
-    {
-        num = talk.GetMessageIndex();
-    }
 
     void Update()
     {
-        if (num == 1)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                EventManeger.WindowChoice(EventManeger.Windows.MessageWindow, EventManeger.Key.UpArrow);
-            }
-            else if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                EventManeger.WindowChoice(EventManeger.Windows.MessageWindow, EventManeger.Key.DownArrow);
-            }
+            WindowChange();
+        }
+    }
 
+    void WindowChange()
+    {
+        num = talk.GetMessageIndex();
+        if (EventChange > num)
+        {
+            EventManeger.WindowChoice(EventManeger.Windows.MessageWindow);
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                EventManeger.WindowChoice(EventManeger.Windows.MessageWindow, EventManeger.Key.Space);
-            }
+            EventManeger.WindowChoice(EventManeger.Windows.CommandWindow);
         }
+
     }
 }

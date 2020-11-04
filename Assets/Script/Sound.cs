@@ -4,14 +4,7 @@ using UnityEngine;
 
 public class Sound : MonoBehaviour
 {
-    //音種類
-    public enum Sounds
-    {
-        attack,
-        comand,
-        level,
-        novel
-    }
+    static Sound GetSound;
 
     [Header("効果音")]
     [SerializeField] static AudioClip Attack;
@@ -20,6 +13,24 @@ public class Sound : MonoBehaviour
     [SerializeField] static AudioClip Novel;
 
     [SerializeField] public static AudioSource Audio;
+
+    static public Sound Ins()
+    {
+        if (GetSound == null)
+        {
+            GetSound = new Sound();
+        }
+        return GetSound;
+    } 
+
+    //音種類
+    public enum Sounds
+    {
+        attack,
+        comand,
+        level,
+        novel
+    }
 
     private void Start()
     {

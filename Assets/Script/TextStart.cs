@@ -40,12 +40,15 @@ public class TalkStaitas
 
     public GameObject GetPanel { get; set; }
 
+    public GameObject MessageObj { get; set; }
+
     public int PanelOpenNum { get; set; }
 }
 
 class TextStart:MonoBehaviour
 {
     [Header("テキスト関係")]
+    [SerializeField] GameObject messageObj;
     [SerializeField] float TextSpeed;
     [Multiline] [SerializeField] string[] Talk;
     [SerializeField] Text text;
@@ -72,7 +75,7 @@ class TextStart:MonoBehaviour
         talk.GetPanel = SelectPanel;
         talk.PanelOpenNum = private_num[panel_index];
 
-
+        talk.MessageObj = messageObj;
     }
 
     static public void GetNextText(int use_talk_index)

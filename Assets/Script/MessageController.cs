@@ -10,11 +10,13 @@ public class MessageController : MonoBehaviour
     static public bool isClose;
 
     TalkStaitas talk = TalkStaitas.Ins();
-    Sound sound = new Sound();
+    Sound sound = Sound.Ins();
 
 
     public void MassageStart()
-     {
+    {
+        talk.MessageObj.SetActive(true);
+        
         text_array_index = talk.GetMessageIndex();
         if (text_array_index == talk.PanelOpenNum)
         {

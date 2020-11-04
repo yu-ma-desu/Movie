@@ -16,16 +16,8 @@ public class EventManeger
         CommandWindow,
     }
 
-    public enum Key
-    {
-        UpArrow,
-        DownArrow,
-        Space,
-        Retrun,
-    }
-
     //ウィンドウコントローラーを選択
-    public static void WindowChoice(Windows windows,Key key)
+    public static void WindowChoice(Windows windows)
     {
         switch (windows)
         {
