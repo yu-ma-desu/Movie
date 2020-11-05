@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 
+/// <summary>たたかうを押した後の処理</summary>
 public class MoveController : Cursor_Inherit
 {
     [SerializeField] GameObject SkillPanel;

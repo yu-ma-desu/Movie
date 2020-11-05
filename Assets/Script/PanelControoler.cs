@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>パネルのカーソル関係</summary>
 public class PanelControoler : Cursor_Inherit
 {    int text_array_index;
     MessageController message;

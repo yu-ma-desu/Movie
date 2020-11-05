@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>バトル関係のオブジェクトのデータ</summary>
 public class BattleObj
 {
     static public BattleObj GetBattle;

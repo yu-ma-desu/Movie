@@ -12,7 +12,7 @@ public class MessageController : MonoBehaviour
     TalkStaitas talk = TalkStaitas.Ins();
     Sound sound = Sound.Ins();
 
-
+    /// <summary>メッセ―ジコントローラーの最初の処理をするところ</summary>
     public void MassageStart()
     {
         talk.MessageObj.SetActive(true);
@@ -28,7 +28,11 @@ public class MessageController : MonoBehaviour
         }
 
     }
-
+   
+    /// <summary>一文字だけ出す処理</summary>
+    /// <param name="_text">一文字出す文章</param>
+    /// <param name="isStory">メインにかかわっているか</param>
+    /// <returns>秒間</returns>
     public IEnumerator TalkMode(string _text, bool isStory)
     {
         isClose = true;

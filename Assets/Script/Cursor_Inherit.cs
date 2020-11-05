@@ -119,6 +119,6 @@ abstract public class Cursor_Inherit : MonoBehaviour
         }
         sound.SoundEffect(Sound.Sounds.comand);
     }
-    /// <summary>決定した時の処理</summary>
+    /// <summary>決定した時の処理　抽象化</summary>
     abstract protected void SelectEnter();
 }

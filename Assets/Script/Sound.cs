@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>音関係の全部</summary>
 public class Sound : MonoBehaviour
 {
     static Sound GetSound;
@@ -11,6 +12,12 @@ public class Sound : MonoBehaviour
     [SerializeField] static AudioClip Comand;
     [SerializeField] static AudioClip Level;
     [SerializeField] static AudioClip Novel;
+
+
+    [Header("BGM")]
+    static AudioClip FieldBGM;
+    static AudioClip SeaBGM;
+    static AudioClip BattleBGM;
 
     [SerializeField] public static AudioSource Audio;
 

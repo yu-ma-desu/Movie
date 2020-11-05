@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>バトルコマンドを回す</summary>
 public class CommandController : MonoBehaviour
 {
     static CommandController GetCommand;
@@ -18,13 +19,10 @@ public class CommandController : MonoBehaviour
 
     public void CommandStart()
     {
-        var talk = TalkStaitas.Ins();
-        var battleobj = BattleObj.Ins();
-
         if (!isClose)
         {
             BattleTemplate();
-            isClose = false;
+            isClose = true;
         }
     }
 
@@ -38,7 +36,10 @@ public class CommandController : MonoBehaviour
 
     void Tactics()
     {
-        
+        var talk = TalkStaitas.Ins();
+        var battleobj = BattleObj.Ins();
+        battleobj.BattlePanel.SetActive(true);
+        talk.MessageObj.SetActive(false);
     }
 
     void PlayerMove()

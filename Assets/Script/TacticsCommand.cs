@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>押したら取り合えず、たたかうコマンドに移動</summary>
 public class TacticsCommand : Cursor_Inherit
 {
     [SerializeField] GameObject MovePanel;

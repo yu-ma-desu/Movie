@@ -12,6 +12,7 @@ class Charactor
     public int HP { get; set; }
     public int MP { get; set; }
     public int LV { get; set; }
+    /// <summary>特技関係</summary>
     public string[] Skill { get; set; }
 }
 

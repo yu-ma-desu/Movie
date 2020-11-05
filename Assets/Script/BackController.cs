@@ -3,18 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>背景関係</summary>
 public class BackController : MonoBehaviour
 {
-    [SerializeField] GameObject[] BackImage;
-    public float speed = 0.01f;  //透明化の速さ
-
-    void Start()
+    static TalkStaitas talk = TalkStaitas.Ins();
+    static int i;
+    public static void Anim()
     {
-        BackImage[0].GetComponent<Image>();
-    }
-
-    void Update()
-    {
-
+        talk.BackArray[i].SetActive(true);
+        i++;
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>メッセージ関係のデータ</summary>
 public class TalkStaitas
 {
     //文字列の順番
@@ -31,22 +32,28 @@ public class TalkStaitas
     }
 
     public float TextSpeed { get; set; }
-
     public int TextLength { get; set; }
-
+    public int PanelOpenNum { get; set; }
     public string Text { get; set; }
 
+    /// <summary>テキストボックス</summary>
     public Text GetText { get; set; }
 
+    /// <summary>パネルウィンドウ</summary>
     public GameObject GetPanel { get; set; }
 
+    /// <summary>メッセージウィンドウ</summary>
     public GameObject MessageObj { get; set; }
 
-    public int PanelOpenNum { get; set; }
+    /// <summary>背景</summary>
+    public GameObject[] BackArray { get; set; }
 }
 
-class TextStart:MonoBehaviour
+class TextStart : MonoBehaviour
 {
+    [Header("背景")]
+    [SerializeField] GameObject[] backImage;
+
     [Header("テキスト関係")]
     [SerializeField] GameObject messageObj;
     [SerializeField] float TextSpeed;
@@ -69,15 +76,18 @@ class TextStart:MonoBehaviour
         talk.GetText = text;
         talk.TextLength = Talk.Length;
         privete_Talk = Talk;
-
         private_num = PanelNum;
 
         talk.GetPanel = SelectPanel;
         talk.PanelOpenNum = private_num[panel_index];
 
         talk.MessageObj = messageObj;
+
+        talk.BackArray = backImage;
     }
 
+    /// <summary>次に呼び出す話の要素数</summary>
+    /// <param name="use_talk_index">会話の要素数</param>
     static public void GetNextText(int use_talk_index)
     {
         var talk = TalkStaitas.Ins();
@@ -87,6 +97,7 @@ class TextStart:MonoBehaviour
         }
     }
 
+    /// <summary>パネルでいいえを選択した時の処理</summary>
     static public void NextPanelOpenNum()
     {
         panel_index++;
